@@ -1,0 +1,26 @@
+"""
+Description TODO
+"""
+
+module(
+    name = "rust-learning",
+    version = "1.0.0",
+)
+
+bazel_dep(name = "rules_rust", version = "0.55.6")
+
+crate = use_extension(
+    "@rules_rust//crate_universe:extension.bzl",
+    "crate",
+)
+
+crate.from_cargo(
+    name = "actix_gcd_deps",
+    cargo_lockfile = "//actix-gcd:Cargo.lock",
+    manifests = [
+        "//actix-gcd:Cargo.toml",
+    ],
+)
+
+
+use_repo(crate, "actix_gcd_deps")

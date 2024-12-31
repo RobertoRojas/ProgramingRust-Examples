@@ -1,0 +1,12 @@
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_test")
+
+rust_binary(
+    name = "gcd",
+    srcs = ["src/main.rs"],
+)
+
+rust_test(
+    name = "gcd_test",
+    crate = ":gcd",
+    deps = [":gcd"],
+)
